@@ -1,0 +1,6 @@
+# read in mol_names into mol_list.txt
+python mol_list_wrt.py
+
+# Multiple Topology Model Creation and MSLD Simulation Input File preparation
+python msld_py_prep.py --sysname=mcl1-3 --cgenff=True
+python msld_py_prep.py --sysname=mcl1-3 --cgenff=True --boxsize=67 --pmegrid=72
