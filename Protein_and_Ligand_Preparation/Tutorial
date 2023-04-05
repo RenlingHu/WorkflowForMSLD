@@ -5,10 +5,11 @@ This folder contains Python/jupter_notebook scripts to align ligands according t
 Author: Renling Hu
 E-mails: 22260237@zju.edu.cn
 
-Note
+**Note**
  - MCS_align and multi_mol2_split are just part of ligand preparation
  - the overall workflow for protein and ligand preparation would be illustrated as follows
 ===============================================================================================================================
+**WorkFlow**
 1. download protein(so-called reference_complex) structure file(pdb) and ligand structure file(sdf or mol2)
 
 2. optimizing reference_complex structure with Schrödinger-"prepwizard"
@@ -42,7 +43,7 @@ Note
  - CgenFF for example here(https://cgenff.umaryland.edu/)
  - mol2 file as the input, and str file as the output
 ===============================================================================================================================
-File information
+**File information**
 ./MCS_align.ipynb
  - script to align ligands together according to their MCS
  - rdkit and a series of relative packages are required
