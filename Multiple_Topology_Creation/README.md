@@ -53,7 +53,7 @@ E-mails: 22260237@zju.edu.cn
  - contains msld_chk msld_mcs msld_crn msld_prm msld_wrt module
 
 `./vis_check.py`
- - Usage: open PyMOL, then run this script in the command line `run vis_check.py`
+ - Usage: open Pymol, then run this script in the command line `run vis_check.py`
 
 `./Lg_Solvate.sh`
  - convpdb.pl from the MMTSB toolset (https://github.com/mmtsb/toolset) is required
