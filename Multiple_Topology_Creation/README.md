@@ -57,7 +57,7 @@ E-mails: 22260237@zju.edu.cn
 
 `./Lg_Solvate.sh`
  - convpdb.pl from the MMTSB toolset (https://github.com/mmtsb/toolset) is required
- - up-to-date CHARMM toppar files in a directory called "toppar" are required
+ - up-to-date CHARMM toppar files in `./tappar/` are required
  - Usage: `./Lg_Solvate.sh [cutoff_distance]`
  - Not used in workflow for now
 
