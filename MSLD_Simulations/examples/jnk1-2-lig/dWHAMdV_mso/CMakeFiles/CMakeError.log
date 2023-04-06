@@ -1,0 +1,60 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/renling/ALF/blade/systems/jnk1_check/jnk1-2-lig/dWHAMdV_mso/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_db8de/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_db8de.dir/build.make CMakeFiles/cmTC_db8de.dir/build
+gmake[1]: Entering directory '/home/renling/ALF/blade/systems/jnk1_check/jnk1-2-lig/dWHAMdV_mso/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_db8de.dir/src.c.o
+/opt/gcc/9.4.0/bin/gcc   -fPIC -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_db8de.dir/src.c.o -c /home/renling/ALF/blade/systems/jnk1_check/jnk1-2-lig/dWHAMdV_mso/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_db8de
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_db8de.dir/link.txt --verbose=1
+/opt/gcc/9.4.0/bin/gcc -fPIC -DCMAKE_HAVE_LIBC_PTHREAD -rdynamic CMakeFiles/cmTC_db8de.dir/src.c.o -o cmTC_db8de 
+CMakeFiles/cmTC_db8de.dir/src.c.o: In function `main':
+src.c:(.text+0x2f): undefined reference to `pthread_create'
+src.c:(.text+0x3b): undefined reference to `pthread_detach'
+src.c:(.text+0x47): undefined reference to `pthread_cancel'
+src.c:(.text+0x58): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_db8de.dir/build.make:106: cmTC_db8de] Error 1
+gmake[1]: Leaving directory '/home/renling/ALF/blade/systems/jnk1_check/jnk1-2-lig/dWHAMdV_mso/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_db8de/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/renling/ALF/blade/systems/jnk1_check/jnk1-2-lig/dWHAMdV_mso/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_b6c74/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b6c74.dir/build.make CMakeFiles/cmTC_b6c74.dir/build
+gmake[1]: Entering directory '/home/renling/ALF/blade/systems/jnk1_check/jnk1-2-lig/dWHAMdV_mso/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b6c74.dir/CheckFunctionExists.c.o
+/opt/gcc/9.4.0/bin/gcc   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_b6c74.dir/CheckFunctionExists.c.o -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b6c74
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6c74.dir/link.txt --verbose=1
+/opt/gcc/9.4.0/bin/gcc -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -rdynamic CMakeFiles/cmTC_b6c74.dir/CheckFunctionExists.c.o -o cmTC_b6c74  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_b6c74.dir/build.make:106: cmTC_b6c74] Error 1
+gmake[1]: Leaving directory '/home/renling/ALF/blade/systems/jnk1_check/jnk1-2-lig/dWHAMdV_mso/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:140: cmTC_b6c74/fast] Error 2
+
+
+

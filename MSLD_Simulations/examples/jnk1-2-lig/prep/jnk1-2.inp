@@ -1,0 +1,94 @@
+variables set box 90
+
+variables set ligseg LIG
+variables set resnum 1
+
+parameters file prep/toppar/par_all36m_prot.prm 
+parameters file prep/toppar/par_all36_cgenff.prm
+parameters file prep/toppar/full_ligand.prm
+parameters file prep/toppar/par_water_ions.prm
+
+structure file psf prep/LIGAND_MINI.psf
+coordinates file crd prep/LIGAND_MINI.crd
+coordinates box cubi {box} 0 0   0 {box} 0   0 0 {box}
+coordinates velocity {temp}
+
+selection limit 200
+
+selection define site1sub1 atomnames C040 H041 H042 O043 H044 C045 H038 H039
+selection define site1sub2 atomnames C048 H049 H050 H051 C052 H046 H047
+selection define site1sub3 atomnames C054 H055 H056 H057 C058 H059 H060 H061 C062 H053
+selection define site1sub4 atomnames C065 H066 H067 O068 C069 H070 H071 H072 C073 H063 H064
+selection define site1sub5 atomnames C076 H077 H078 S079 O080 O081 C082 H083 H084 H085 C086 H074 H075
+
+selection define site2sub1 atomnames C088 H087
+selection define site2sub2 atomnames N089 H090 C091 C092 H093 H094 H095 O096 C097
+selection define site2sub3 atomnames S098 C099 H100 H101 H102 O103 O104 C105
+selection define site2sub4 atomnames N106 O107 O108 C109
+ 
+msld nblocks {nblocks}
+
+variables set prevblock 0
+variables set ii 1
+while <= {ii} {nsites}
+   variables set jj 1
+   while <= {jj} {nsubs{ii}}
+      variables calculate jp0 int + {jj} {prevblock}
+
+      msld call {jp0} site{ii}sub{jj}
+
+      variables calculate jj int + {jj} 1
+   endwhile
+   variables calculate prevblock int + {prevblock} {nsubs{ii}}
+   variables calculate ii int + {ii} 1
+endwhile
+
+!               B S   t0  tv  tm  fb   q
+   msld initialize 0 0 0 0 5 0 0
+
+variables set blockassign 0
+variables set prevblock 0
+variables set ii 1
+while <= {ii} {nsites}
+   variables set jj 1
+   variables set theta0 1
+   while <= {jj} {nsubs{ii}}
+      variables calculate jp0 int + {jj} {prevblock}
+
+!               B S   t0  tv  tm  fb   q
+      msld initialize {jp0} {ii} {theta0} 0 5 {lams{ii}s{jj}} 0
+
+      ! variables set theta0 -1 ! start all equal
+      variables calculate jj int + {jj} 1
+   endwhile
+   variables calculate prevblock int + {prevblock} {nsubs{ii}}
+   variables calculate ii int + {ii} 1
+endwhile
+   msld removescaling bond urey angle dihe impr 
+
+   msld softcore on
+   msld softcore14 off
+   ! pmel ex ! msld ewaldtype 2 ! default
+
+variables set prevblock 0
+variables set ii 1
+while <= {ii} {nsites}
+   variables set jj 1
+   while <= {jj} {nsubs{ii}}
+      variables calculate jp0 int + {jj} {prevblock}
+      variables calculate kk int + {jj} 1
+      while <= {kk} {nsubs{ii}}
+         variables calculate kp0 int + {kk} {prevblock}
+
+         msld bias {jp0} {kp0} 6 0.0 {cs{ii}s{jj}s{ii}s{kk}} 0
+         msld bias {jp0} {kp0} 10 -5.56 {xs{ii}s{jj}s{ii}s{kk}} 0
+         msld bias {jp0} {kp0} 8 0.017 {ss{ii}s{jj}s{ii}s{kk}} 0
+         msld bias {kp0} {jp0} 10 -5.56 {xs{ii}s{kk}s{ii}s{jj}} 0
+         msld bias {kp0} {jp0} 8 0.017 {ss{ii}s{kk}s{ii}s{jj}} 0
+         variables calculate kk int + {kk} 1
+      endwhile
+      variables calculate jj int + {jj} 1
+   endwhile
+   variables calculate prevblock int + {prevblock} {nsubs{ii}}
+   variables calculate ii int + {ii} 1
+endwhile

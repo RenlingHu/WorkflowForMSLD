@@ -1,0 +1,1 @@
+/opt/gcc/9.4.0/bin/g++ -rdynamic CMakeFiles/wham.dir/src/wham_generated_wham.cu.o -o wham  /opt/cuda/11.2/lib64/libcudart_static.a -ldl -lrt -lpthread 
