@@ -14,13 +14,13 @@ E-mails: 22260237@zju.edu.cn
  - secondly modified the msld_wrt module to connect to the next 'Simulation System Setup' stage more smoothly
  
 ---
-#### USAGE
-`./run_crn`
-
 #### INPUT
  - structure file(mol2) for each ligand, **make sure** the atom names within each molecule are unique (atom names across ligands may be reused)
  - toppar/param files(str or rtf&prm) for each ligand, *make sure* to name these files the same as the corresponding .mol2 file. 
  - "mol_list.txt" with mol2 filenames (without suffix)
+
+#### USAGE
+`./run_crn`
 
 #### OUTPUT
 1. **After the first calling**
