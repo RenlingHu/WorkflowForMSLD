@@ -6,8 +6,6 @@
 
 ![Workflow](https://github.com/RenlingHu/WorkflowForMSLD/blob/main/Workflow.jpg)
 
-![Main modifications(red part)](https://github.com/RenlingHu/WorkflowForMSLD/blob/main/Main_Modifications.jpg)
-
 ### Overview
  - `Protein_and_Ligand_Preparation/` : (1) workflow for protein and ligand preparation; (2) Python/Jupter Notebook scripts for aligning ligands according to the MCS
  - `Multiple_Topology_Creation/` : modified-Python scripts for creating multiple topology models of ligands and preparing input files needed in next stages
