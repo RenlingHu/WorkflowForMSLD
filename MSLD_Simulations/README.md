@@ -10,7 +10,7 @@ E-mails: 22260237@zju.edu.cn
 
 #### Note
  - origin from: https://github.com/RyanLeeHayes/ALF/tree/master/blade/template
- - these MLSD Simulations use ****BLaDE** instead CHARMM
+ - these MLSD Simulations use **BLaDE** Standalone instead CHARMM
  - mainly optimized the interface with the previous stage
  - get BLaDE and more details for using BLaDE: https://github.com/RyanLeeHayes/BLaDE
 
