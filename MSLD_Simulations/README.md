@@ -33,16 +33,24 @@ E-mails: 22260237@zju.edu.cn
 #### USAGE
 1. Preparation
 `cd ./run`
+
 `bash preparation.sh`
 
 2. Simulations
 `cd ./run`
+
 `bash run_All`
+
 or step-by-step:
+
 `cd ./run`
+
 `bash run_flat.sh`
+
 `bash run_prod.sh`
+
 `bash run_postprocess.sh`
+
 **Note** : step-by-step is recommended, since after the flattening, one could check the landscape and choose the best parameters
 
 #### OUTPUT
