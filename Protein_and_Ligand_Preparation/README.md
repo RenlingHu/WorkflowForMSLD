@@ -36,10 +36,10 @@ E-mails: 22260237@zju.edu.cn
 
 6. within a group, accurately align all other ligands with the one which has the smallest perturbation R group by `./MCS_align.ipynb` (**strictly**)
     - rdkit and a series of relative packages are required
-    - *make sure* they are in the same multi_sdf file
-    - *make sure* to edit the input file name and output file name according to the system
-    - *make sure* to assign the number of reference_ligand in the script
-    - *make sure* "is it strictly aligned" = True, so that the MCS of all ligands have the same spatial position. This is **IMPORTANT** in the "Multiple Topology Model Creation" stage!!
+    - **make sure** they are in the same multi_sdf file
+    - **make sure** to edit the input file name and output file name according to the system
+    - **make sure** to assign the number of reference_ligand in the script
+    - **make sure** "is it strictly aligned" = True, so that the MCS of all ligands have the same spatial position. This is **IMPORTANT** in the "Multiple Topology Model Creation" stage!!
     - one could also use **Schrödinger-"Ligand Alignment"**, but a **CAREFUL** check is required
     - it is recommended to check the structure in **Pymol** or **Schrödinger** after alignment
 
