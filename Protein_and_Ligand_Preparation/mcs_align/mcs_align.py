@@ -10,6 +10,7 @@ from . import zmatrix
 __version__ = "0.1"
 __license__ = "WTFPL Version 2"
 
+
 class MCSALIGN(object):
     r"""
     Align small molecules according to their maximum common substructure (MCS).
@@ -20,23 +21,25 @@ class MCSALIGN(object):
         The molecules to align.
     """
 
-    def __init__(self, mol_list):
+    def __init__(self, mol_list: list):
         r"""
         Initialize some internal data and try find the MCS.
         """
         self._mol = copy.deepcopy(mol_list)
         self._mol_aligned = None
 
-        ps = Chem.rdFMCS.MCSParameters()
-        results = Chem.rdFMCS.FindMCS(self._mol, ps)
+        results = Chem.rdFMCS.FindMCS(self._mol, completeRingsOnly=True)
         self._mcs = Chem.MolFromSmarts(results.smartsString)
         self._mcs_indices = [x.GetSubstructMatch(self._mcs) for x in self._mol]
 
         if (self._mcs.GetNumAtoms() == 0):
             raise RuntimeError('Can not find MCS for given molecules!')
 
-    def _substructure_kabsch(self, mol_1, mol_2, indices_1, \
-            indices_2) -> rdkit.Chem.rdchem.Mol:
+    def _substructure_kabsch(self,
+                             mol_1: rdkit.Chem.rdchem.Mol,
+                             mol_2: rdkit.Chem.rdchem.Mol,
+                             indices_1: list,
+                             indices_2: list) -> rdkit.Chem.rdchem.Mol:
         r"""
         The kabsch method based on partial atoms of molecules.
 
@@ -57,8 +60,9 @@ class MCSALIGN(object):
         alignment will NOT happend in-placed.
         """
         if (len(indices_1) != len(indices_2)):
-            raise RuntimeError('Can not align two substructures with ' + \
-                'different atom numbers!')
+            message = 'Can not align two substructures with ' + \
+                      'different atom numbers!'
+            raise RuntimeError(message)
 
         P = mol_1.GetConformer().GetPositions()
         Q = mol_2.GetConformer().GetPositions()
@@ -128,8 +132,8 @@ class MCSALIGN(object):
                         break
                 for n in \
                     mol.GetAtomWithIdx(atom_map[neighbors[1]]).GetNeighbors():
-                    if ((n.GetIdx() in atom_map[:i]) and \
-                        (n.GetIdx() != atom_map[neighbors[0]])):
+                    if ((n.GetIdx() in atom_map[:i]) and
+                            (n.GetIdx() != atom_map[neighbors[0]])):
                         neighbors.append(atom_map[:i].index(n.GetIdx()))
                         break
                 if (len(neighbors) == 2):
@@ -162,15 +166,15 @@ class MCSALIGN(object):
             If use the zmatrix method to perform strict structure
             transformation.
         """
-        result = self._substructure_kabsch(self._mol[mol_id_1], \
-            self._mol[mol_id_2], list(self.mcs_indices[mol_id_1]), \
-            list(self.mcs_indices[mol_id_2]))
+        result = self._substructure_kabsch(
+            self._mol[mol_id_1], self._mol[mol_id_2],
+            list(self.mcs_indices[mol_id_1]), list(self.mcs_indices[mol_id_2]))
 
         if (strict_align):
-            zmat_1, atom_map_1 = self._mol_to_zmatrix(mol_id_1, \
-                self.mcs_indices[mol_id_1][0:3])
-            zmat_2, atom_map_2 = self._mol_to_zmatrix(mol_id_2, \
-                self.mcs_indices[mol_id_2][0:3])
+            zmat_1, atom_map_1 = self._mol_to_zmatrix(
+                mol_id_1, self.mcs_indices[mol_id_1][0:3])
+            zmat_2, atom_map_2 = self._mol_to_zmatrix(
+                mol_id_2, self.mcs_indices[mol_id_2][0:3])
             for i in range(0, self.mcs.GetNumAtoms()):
                 index_1 = atom_map_1[self.mcs_indices[mol_id_1][i]]
                 index_2 = atom_map_2[self.mcs_indices[mol_id_2][i]]
@@ -188,8 +192,8 @@ class MCSALIGN(object):
             for i in range(0, conf.GetNumAtoms()):
                 conf.SetAtomPosition(i, c.cartesian[atom_map_2[i]][1])
 
-            result = self._substructure_kabsch(self._mol[mol_id_1], result, \
-                list(self.mcs_indices[mol_id_1]), \
+            result = self._substructure_kabsch(
+                self._mol[mol_id_1], result, list(self.mcs_indices[mol_id_1]),
                 list(self.mcs_indices[mol_id_2]))
 
         return result
@@ -207,8 +211,9 @@ class MCSALIGN(object):
             transformation.
         """
         if (self.mcs.GetNumAtoms() < 3):
-            warnings.warn('Too few atoms in the MCS! ' + \
-                'Strict alignment will be disabled!')
+            message = 'Too few atoms in the MCS! Strict alignment will ' + \
+                      'be disabled!'
+            warnings.warn(message)
             strict_align = False
 
         self._mol_aligned = []
