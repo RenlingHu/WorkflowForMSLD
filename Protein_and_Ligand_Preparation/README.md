@@ -1,6 +1,6 @@
 # Protein and Ligand Preparation
 
-### This folder contains Python/jupter_notebook scripts for aligning ligands according to their MCS
+### This folder contains (1) workflow for protein and ligand preparation, (2) Python/Jupter Notebook scripts for aligning ligands according to the MCS
 
 05/04/2023
 
@@ -9,7 +9,7 @@ Author: Renling Hu
 E-mails: 22260237@zju.edu.cn
 
 #### Note
- - MCS_align and multi_mol2_split are just part of ligand preparation
+ - LIC_align and multi_mol2_split are just part of ligand preparation
  - the overall workflow for protein and ligand preparation would be illustrated as follows
 
 ---
@@ -17,6 +17,7 @@ E-mails: 22260237@zju.edu.cn
 1. download protein(so-called reference_complex) structure file(pdb) and ligand structure file(sdf or mol2)
 
 2. optimizing reference_complex structure with **Schrödinger-"prepwizard"**
+    - `${path_to_schrodinger}/utilities/prepwizard -c -fillsidechains -fillloops -s -propka_pH 7.4 ${protein}.pdb ${protein}_schrodinger.pdb`
     - fill sidechains and loops, set pKa to 7.4, etc.
     - **make sure** ligand naming is compatible with CHARMM
 
