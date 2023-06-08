@@ -1,6 +1,6 @@
 # MSLD Simulations (Adaptive Landscape Flattening & Production Simulations)
 
-### This folder contains scripts and input files required to automately run MSLD Simulations
+### This folder contains scripts and input files required to automately run MSLD Simulations and calculate relative binding free energies
 
 05/04/2023
 
@@ -35,7 +35,7 @@ E-mails: 22260237@zju.edu.cn
 
 `cd ./run`
 
-`bash preparation.sh`
+`bash run_preparation.sh`
 
 2. Simulations
 

@@ -12,7 +12,7 @@
  - `Protein_and_Ligand_Preparation/` : (1) workflow for protein and ligand preparation; (2) Python/Jupter Notebook scripts for aligning ligands according to the MCS.
  - `Multiple_Topology_Creation/` : modified-Python scripts for creating multiple topology models of ligands and preparing input files needed in next stages.
  - `Simulation_System_Setup/` : CHARMM scripts and input files for setting up simulation systems.
- - `MSLD_Simulations/` : (1) Python and Shell scripts for running MSLD Simulations; (2) workflow for adaptive landscape flattening and production runs; (3) Python and Shell scripts for calculating the relative binding free energies.
+ - `MSLD_Simulations/` : (1) Python and Shell scripts for running MSLD Simulations; (2) workflow for adaptive landscape flattening and production runs; (3) Python and Shell scripts for calculating relative binding free energies.
 
 ### Requirements
  - python 3.9.16
