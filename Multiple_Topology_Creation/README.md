@@ -10,8 +10,8 @@ E-mails: 22260237@zju.edu.cn
 
 #### Note
  - origin from: https://github.com/Vilseck-Lab/msld-py-prep
- - mainly modified the msld_mcs module which combined with the MCS_align algorithm to identify the MCS more accurately
- - secondly modified the msld_wrt module to connect to the next 'Simulation System Setup' stage more smoothly
+ - mainly modified the msld_mcs module which combined with the LIC_align algorithm to identify the MCS more accurately
+ - secondly modified the msld_wrt module to connect to the next 'Simulation System Setup' stage more flawlessly and robustly
  
 ---
 #### INPUT
@@ -20,14 +20,14 @@ E-mails: 22260237@zju.edu.cn
  - "mol_list.txt" with mol2 filenames (without suffix)
 
 #### USAGE
-`./run_crn`
+`./run`
 
 #### OUTPUT
 1. **After the first calling**
 
 `./MCS_for_MSLD.txt`
  - each molecule is divided up into core(anchor) + fragment
- - one could manually change the selection of the core and the setting of the substituent site to explore MSLD calculations of interest
+ - one could manually change the selection of the core and the setting of the substituent site to explore perturbation patterns of interest
     - _NSUBS_ contains information about how many different substituents are at each site.
     - _REFLIG_ includes the name of the ligand that is used as a reference to match every other ligand’s atoms to. This is not to be confused with the reference ligand used for the subsequent free energy calculations, although they could be the same.
     - _CORE_ section includes a list of all of the ligands and the corresponding atom names that are in the core. The matched atoms are spatially aligned across ligands, meaning that each column corresponds to the atom names of all the ligands whose atoms are a match (or the ‘same’).
@@ -39,6 +39,9 @@ E-mails: 22260237@zju.edu.cn
 `./build.sysname`
  - contains Input Files for the next 'Simulation System Setup' and 'MSLD Simulations'
  - see more details in 'Simulation System Setup' and 'MSLD Simulation'
+
+`./translation.txt`
+ - New atom name assigned to multiple ligands that contain one common core and different fragments
 
 ---
 
