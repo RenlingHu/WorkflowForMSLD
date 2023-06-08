@@ -4,7 +4,7 @@
  - An open-source workflow for MSLD Simulations based on BLaDE, from "Protein and Ligand Preparation" to "MSLD Simulations"
  - This workflow not only **incorporated** all open source scripts currently available, but also **added** workflows and scripts for protein and ligand preparation(e.g. MCS align) and **optimized** MCSS algorithm and the interface between stages
 
-![Workflow](https://github.com/RenlingHu/WorkflowForMSLD/blob/main/Workflow.jpg)
+![Workflow](https://github.com/RenlingHu/WorkflowForMSLD/blob/main/workflow.jpg)
 
 ### Overview
  - `Protein_and_Ligand_Preparation/` : (1) workflow for protein and ligand preparation; (2) Python/Jupter Notebook scripts for aligning ligands according to the MCS
