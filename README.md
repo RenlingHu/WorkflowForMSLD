@@ -6,7 +6,7 @@
  - Our workflow is set up in **modular way** to make it easier for various techniques to be combined and extended.
  - Our workflow **incorporated** the empirical strategies and specific considerations that are crucial for MSLD calculations. By utilizing default protocol and parameters, our workflow enables the acquisition of reliable results, even for inexperienced or exploratory participants.
 
-![Workflow](https://github.com/RenlingHu/WorkflowForMSLD/blob/main/Workflow.jpg)
+![Workflow](https://github.com/RenlingHu/WorkflowForMSLD/blob/main/workflow.jpg)
 
 ### Overview
  - `Protein_and_Ligand_Preparation/` : (1) workflow for protein and ligand preparation; (2) Python/Jupter Notebook scripts for aligning ligands according to the MCS.
