@@ -32,5 +32,5 @@
  - There are details about how to use them in the corresponding README.md under each folder.
 
 ### Acknowledgement
- - Thanks to RyanLeeHayes and Vilseck-Lab for open-source scripts, corresponds to "Multiple Topology Creation" and "MSLD_Simulations" respectively.
+ - Thanks to RyanLeeHayes and Vilseck-Lab for open-source scripts, corresponds to "Multiple Topology Creation" and "MSLD_Simulations", respectively.
  - This workflow is based on the scripts of the two, and the contributions of their lab to MSLD.
