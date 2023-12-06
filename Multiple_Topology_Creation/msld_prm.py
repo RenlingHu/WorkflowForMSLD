@@ -134,20 +134,21 @@ def MsldPRM(outdir,cgenff,verbose=False,debug=False):
                 line=fp.readline()
                 while (line != '\n') and (line[0:4] != 'ANGL'):
                     lns=line.split()
-                    namef=lns[0]+' '+lns[1]
-                    namer=lns[1]+' '+lns[0]
-                    # check to make sure the bond isn't already in prmbonds
-                    if not ((namef in prmbonds) or (namer in prmbonds)):
-                        prmbonds[namef]=lns[2]+' '+lns[3]
-                    else: # chk for same types but different parameters
-                        if (namef in prmbonds) and (prmbonds[namef] != lns[2]+' '+lns[3]):
-                            print(' ** Duplicate BOND with unique parameters ('+namef+') ** UNcomment as necessary') 
-                            duplprm['BOND'].append('!'+namef+' '+lns[2]+' '+lns[3])
-                        elif (namer in prmbonds) and (prmbonds[namer] != lns[2]+' '+lns[3]):
-                            print(' ** Duplicate BOND with unique parameters ('+namer+') ** UNcomment as necessary') 
-                            duplprm['BOND'].append('!'+namer+' '+lns[2]+' '+lns[3])
-                        else:
-                            pass
+                    if lns != []:
+                        namef=lns[0]+' '+lns[1]
+                        namer=lns[1]+' '+lns[0]
+                        # check to make sure the bond isn't already in prmbonds
+                        if not ((namef in prmbonds) or (namer in prmbonds)):
+                            prmbonds[namef]=lns[2]+' '+lns[3]
+                        else: # chk for same types but different parameters
+                            if (namef in prmbonds) and (prmbonds[namef] != lns[2]+' '+lns[3]):
+                                print(' ** Duplicate BOND with unique parameters ('+namef+') ** UNcomment as necessary') 
+                                duplprm['BOND'].append('!'+namef+' '+lns[2]+' '+lns[3])
+                            elif (namer in prmbonds) and (prmbonds[namer] != lns[2]+' '+lns[3]):
+                                print(' ** Duplicate BOND with unique parameters ('+namer+') ** UNcomment as necessary') 
+                                duplprm['BOND'].append('!'+namer+' '+lns[2]+' '+lns[3])
+                            else:
+                                pass
                     line=fp.readline()
             duplprm['BOND']=list(set(duplprm['BOND']))
             # look for ANGLE terms
@@ -156,40 +157,41 @@ def MsldPRM(outdir,cgenff,verbose=False,debug=False):
                 while (line != '\n') and (line[0:4] != 'DIHE'):
                     lns=line.split()
                     # chk for UB terms
-                    if len(lns) > 5:
-                        if lns[5] == '!':
+                    if lns != []:
+                        if len(lns) > 5:
+                            if lns[5] == '!':
+                                ub=False
+                            else:
+                                ub=True
+                        else:
                             ub=False
-                        else:
-                            ub=True
-                    else:
-                        ub=False
-                    namef=lns[0]+' '+lns[1]+' '+lns[2]
-                    namer=lns[2]+' '+lns[1]+' '+lns[0]
-                    # check to make sure the angle isn't already in prmangs
-                    if not ((namef in prmangs) or (namer in prmangs)):
-                        if ub:
-                            prmangs[namef]=lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6]
-                        else:
-                            prmangs[namef]=lns[3]+' '+lns[4]
-                    else: # chk for same types but different parameters
-                        if ub:
-                            if (namef in prmangs) and (prmangs[namef] != lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6]):
-                                print(' ** Duplicate ANGLE with unique parameters ('+namef+') ** UNcomment as necessary') 
-                                duplprm['ANGL'].append('!'+namef+' '+lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6])
-                            elif (namer in prmangs) and (prmangs[namer] != lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6]):
-                                print(' ** Duplicate ANGLE with unique parameters ('+namer+') ** UNcomment as necessary') 
-                                duplprm['ANGL'].append('!'+namer+' '+lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6])
+                        namef=lns[0]+' '+lns[1]+' '+lns[2]
+                        namer=lns[2]+' '+lns[1]+' '+lns[0]
+                        # check to make sure the angle isn't already in prmangs
+                        if not ((namef in prmangs) or (namer in prmangs)):
+                            if ub:
+                                prmangs[namef]=lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6]
                             else:
-                                pass
-                        else:
-                            if (namef in prmangs) and (prmangs[namef] != lns[3]+' '+lns[4]):
-                                print(' ** Duplicate ANGLE with unique parameters ('+namef+') ** UNcomment as necessary') 
-                                duplprm['ANGL'].append('!'+namef+' '+lns[3]+' '+lns[4])
-                            elif (namer in prmangs) and (prmangs[namer] != lns[3]+' '+lns[4]):
-                                print(' ** Duplicate ANGLE with unique parameters ('+namer+') ** UNcomment as necessary') 
-                                duplprm['ANGL'].append('!'+namer+' '+lns[3]+' '+lns[4])
+                                prmangs[namef]=lns[3]+' '+lns[4]
+                        else: # chk for same types but different parameters
+                            if ub:
+                                if (namef in prmangs) and (prmangs[namef] != lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6]):
+                                    print(' ** Duplicate ANGLE with unique parameters ('+namef+') ** UNcomment as necessary') 
+                                    duplprm['ANGL'].append('!'+namef+' '+lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6])
+                                elif (namer in prmangs) and (prmangs[namer] != lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6]):
+                                    print(' ** Duplicate ANGLE with unique parameters ('+namer+') ** UNcomment as necessary') 
+                                    duplprm['ANGL'].append('!'+namer+' '+lns[3]+' '+lns[4]+' '+lns[5]+' '+lns[6])
+                                else:
+                                    pass
                             else:
-                                pass
+                                if (namef in prmangs) and (prmangs[namef] != lns[3]+' '+lns[4]):
+                                    print(' ** Duplicate ANGLE with unique parameters ('+namef+') ** UNcomment as necessary') 
+                                    duplprm['ANGL'].append('!'+namef+' '+lns[3]+' '+lns[4])
+                                elif (namer in prmangs) and (prmangs[namer] != lns[3]+' '+lns[4]):
+                                    print(' ** Duplicate ANGLE with unique parameters ('+namer+') ** UNcomment as necessary') 
+                                    duplprm['ANGL'].append('!'+namer+' '+lns[3]+' '+lns[4])
+                                else:
+                                    pass
                     line=fp.readline()
             duplprm['ANGL']=list(set(duplprm['ANGL']))
             # look for DIHEDRAL terms
@@ -198,22 +200,23 @@ def MsldPRM(outdir,cgenff,verbose=False,debug=False):
                 while (line != '\n') and (line[0:4] != 'IMPR'):
                     lns=line.split()
                     # add the multiplicity into the name
-                    namef=lns[0]+' '+lns[1]+' '+lns[2]+' '+lns[3]+' '+lns[5]
-                    namer=lns[3]+' '+lns[2]+' '+lns[1]+' '+lns[0]+' '+lns[5]
-                    # check to make sure the phi isn't already in prmphis
-                    if not ((namef in prmphis) or (namer in prmphis)):
-                        prmphis[namef]=lns[4]+' '+lns[5]+' '+lns[6]
-                    else: # chk for same types but different parameters
-                        if (namef in prmphis) and (prmphis[namef] != lns[4]+' '+lns[5]+' '+lns[6]):
-                            print(' ** Duplicate PHI with unique parameters ('+namef+') ** UNcomment as necessary') 
-                            namef=lns[0]+' '+lns[1]+' '+lns[2]+' '+lns[3]+' '
-                            duplprm['DIHE'].append('!'+namef+' '+lns[4]+' '+lns[5]+' '+lns[6])
-                        elif (namer in prmphis) and (prmphis[namer] != lns[4]+' '+lns[5]+' '+lns[6]):
-                            print(' ** Duplicate PHI with unique parameters ('+namer+') ** UNcomment as necessary') 
-                            namer=lns[3]+' '+lns[2]+' '+lns[1]+' '+lns[0]+' '
-                            duplprm['DIHE'].append('!'+namer+' '+lns[4]+' '+lns[5]+' '+lns[6])
-                        else:
-                            pass
+                    if lns != []:
+                        namef=lns[0]+' '+lns[1]+' '+lns[2]+' '+lns[3]+' '+lns[5]
+                        namer=lns[3]+' '+lns[2]+' '+lns[1]+' '+lns[0]+' '+lns[5]
+                        # check to make sure the phi isn't already in prmphis
+                        if not ((namef in prmphis) or (namer in prmphis)):
+                            prmphis[namef]=lns[4]+' '+lns[5]+' '+lns[6]
+                        else: # chk for same types but different parameters
+                            if (namef in prmphis) and (prmphis[namef] != lns[4]+' '+lns[5]+' '+lns[6]):
+                                print(' ** Duplicate PHI with unique parameters ('+namef+') ** UNcomment as necessary') 
+                                namef=lns[0]+' '+lns[1]+' '+lns[2]+' '+lns[3]+' '
+                                duplprm['DIHE'].append('!'+namef+' '+lns[4]+' '+lns[5]+' '+lns[6])
+                            elif (namer in prmphis) and (prmphis[namer] != lns[4]+' '+lns[5]+' '+lns[6]):
+                                print(' ** Duplicate PHI with unique parameters ('+namer+') ** UNcomment as necessary') 
+                                namer=lns[3]+' '+lns[2]+' '+lns[1]+' '+lns[0]+' '
+                                duplprm['DIHE'].append('!'+namer+' '+lns[4]+' '+lns[5]+' '+lns[6])
+                            else:
+                                pass
                     line=fp.readline()
             duplprm['DIHE']=list(set(duplprm['DIHE']))
             # look for IMPROPER terms
@@ -222,21 +225,25 @@ def MsldPRM(outdir,cgenff,verbose=False,debug=False):
                 while (line != '\n') and ((line[0:3] != 'NON') or (line[0:3] != 'END')):
                     lns=line.split()
                     # add the multiplicity into the name
-                    namef=lns[0]+' '+lns[1]+' '+lns[2]+' '+lns[3]
-                    namer=lns[3]+' '+lns[2]+' '+lns[1]+' '+lns[0]
-                    # check to make sure the impr isn't already in prmimpr
-                    if not ((namef in prmimpr) or (namer in prmimpr)):
-                        prmimpr[namef]=lns[4]+' '+lns[5]+' '+lns[6]
-                    else: # chk for same types but different parameters
-                        if (namef in prmimpr) and (prmimpr[namef] != lns[4]+' '+lns[5]+' '+lns[6]):
-                            print(' ** Duplicate IMPR with unique parameters ('+namef+') ** UNcomment as necessary') 
-                            duplprm['IMPR'].append('!'+namef+' '+lns[4]+' '+lns[5]+' '+lns[6])
-                        elif (namer in prmimpr) and (prmimpr[namer] != lns[4]+' '+lns[5]+' '+lns[6]):
-                            print(' ** Duplicate IMPR PHI with unique parameters ('+namer+') ** UNcomment as necessary') 
-                            duplprm['IMPR'].append('!'+namer+' '+lns[4]+' '+lns[5]+' '+lns[6])
-                        else:
-                            pass
-                    line=fp.readline()
+                    if (lns != []) and (lns != ['END']):
+                        namef=lns[0]+' '+lns[1]+' '+lns[2]+' '+lns[3]
+                        namer=lns[3]+' '+lns[2]+' '+lns[1]+' '+lns[0]
+                        # check to make sure the impr isn't already in prmimpr
+                        if not ((namef in prmimpr) or (namer in prmimpr)):
+                            prmimpr[namef]=lns[4]+' '+lns[5]+' '+lns[6]
+                        else: # chk for same types but different parameters
+                            if (namef in prmimpr) and (prmimpr[namef] != lns[4]+' '+lns[5]+' '+lns[6]):
+                                print(' ** Duplicate IMPR with unique parameters ('+namef+') ** UNcomment as necessary') 
+                                duplprm['IMPR'].append('!'+namef+' '+lns[4]+' '+lns[5]+' '+lns[6])
+                            elif (namer in prmimpr) and (prmimpr[namer] != lns[4]+' '+lns[5]+' '+lns[6]):
+                                print(' ** Duplicate IMPR PHI with unique parameters ('+namer+') ** UNcomment as necessary') 
+                                duplprm['IMPR'].append('!'+namer+' '+lns[4]+' '+lns[5]+' '+lns[6])
+                            else:
+                                pass
+                    if lns == ['END']:
+                        break
+                    else:
+                        line=fp.readline()
             duplprm['IMPR']=list(set(duplprm['IMPR']))
             # look for NONBONDED terms
             if not cgenff:
