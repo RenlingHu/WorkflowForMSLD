@@ -1,9 +1,9 @@
 #! /bin/bash
 
+cd ../
+
 export nnodes=`cat nnodes`
 export nreps=`cat nreps`
-
-cd ../
 
 # phase 1-3
 #DEPEND="--dependency=afterok:$PID"

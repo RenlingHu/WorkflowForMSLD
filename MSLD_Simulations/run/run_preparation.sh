@@ -4,9 +4,10 @@
 # defines the perturbation-related parameters and procedures for MSLD simulations
 # parameter_complex is set to False for ligand system
 cd ../prep/charmminp
-python inp_for_BLaDE.py --sysname=jnk1-2 --complex=True 
+python inp_for_BLaDE.py --sysname=mcl1-2 --complex=True 
 
 # recompile WHAM in current path
+cd ../../run
 bash run_compile.sh
 
 # make sure these scripts have executable permissions
