@@ -1,10 +1,11 @@
 #! /bin/bash
 
+
+cd ../
+
 export nnodes=`cat nnodes`
 export nreps=`cat nreps`
 export nitt=10
-
-cd ../
 
 for p in a b c
 do

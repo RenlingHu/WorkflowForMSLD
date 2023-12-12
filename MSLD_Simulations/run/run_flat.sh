@@ -1,9 +1,9 @@
 #!/bin/sh
 
+cd ../
+
 export nnodes=`cat nnodes`
 export nreps=`cat nreps`
-
-cd ../
 
 # DEPEND="--dependency=afterok:"
 bash runset2.sh

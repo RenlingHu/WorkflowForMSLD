@@ -1,9 +1,9 @@
 #! /bin/bash
 
+cd ../
+
 export nnodes=`cat nnodes`
 export nreps=`cat nreps`
-
-cd ../
 
 export i=131
 export eqS=5
