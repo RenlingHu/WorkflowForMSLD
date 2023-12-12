@@ -25,7 +25,7 @@ E-mails: 22260237@zju.edu.cn
     - then get protein.pdb, solv.pdb, ions.pdb and reference_ligand.pdb
     - **keep track** of box_size and pmegrid_size
 
-4. align all ligands with reference_ligand by `./MCS_align.ipynb` (**not strictly**)
+4. align all ligands with reference_ligand by `./LIC_align.ipynb` (**not strictly**)
     - rdkit and a series of relative packages are required
     - **make sure** they are in the same multi_sdf file
     - **make sure** to edit the input file name and output file name according to the system
@@ -36,7 +36,7 @@ E-mails: 22260237@zju.edu.cn
     - consider the MCS first is recommended
     - based on the same MCS, consider the size of the perturbation R group
 
-6. within a group, accurately align all other ligands with the one which has the smallest perturbation R group by `./MCS_align.ipynb` (**strictly**)
+6. within a group, accurately align all other ligands with the one which has the smallest perturbation R group by `./LIC_align.ipynb` (**strictly**)
     - rdkit and a series of relative packages are required
     - **make sure** they are in the same multi_sdf file
     - **make sure** to edit the input file name and output file name according to the system
