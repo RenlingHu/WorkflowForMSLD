@@ -34,3 +34,7 @@
 ### Acknowledgement
  - Thanks to Vilseck-Lab and RyanLeeHayes for open-source scripts, corresponds to "Multiple Topology Creation" and "MSLD_Simulations", respectively.
  - This workflow is based on the scripts of the two, and the contributions of their lab to MSLD.
+
+### Citation
+Please cite us if you use this workflow in your research:
+{Hu R, Zhang J, Kang Y, et al. Comprehensive, Open-Source, and Automated Workflow for Multisite λ-Dynamics in Lead Optimization[J]. Journal of Chemical Theory and Computation, 2024.](https://doi.org/10.1021/acs.jctc.3c01154)
