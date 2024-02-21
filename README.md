@@ -37,4 +37,4 @@
 
 ### Citation
 Please cite us if you use this workflow in your research:
-{Hu R, Zhang J, Kang Y, et al. Comprehensive, Open-Source, and Automated Workflow for Multisite λ-Dynamics in Lead Optimization[J]. Journal of Chemical Theory and Computation, 2024.](https://doi.org/10.1021/acs.jctc.3c01154)
+[Hu R, Zhang J, Kang Y, et al. Comprehensive, Open-Source, and Automated Workflow for Multisite λ-Dynamics in Lead Optimization[J]. Journal of Chemical Theory and Computation, 2024.](https://doi.org/10.1021/acs.jctc.3c01154)
